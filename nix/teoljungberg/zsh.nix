@@ -1,10 +1,16 @@
-{ pkgs, ruby, dotfiles-zshenv, dotfiles-zshrc }:
+{ pkgs, ruby, dotfiles-zshenv, dotfiles-zshrc, env }:
 
 let
   cpathEnv = builtins.getEnv "CPATH";
   libraryPathEnv = builtins.getEnv "LIBRARY_PATH";
   pathEnv = builtins.getEnv "PATH";
-  zdotdir-zshenv = pkgs.writeText ".zshenv" dotfiles-zshenv;
+  zdotdir-zshenv = pkgs.writeText ".zshenv" ''
+    ${dotfiles-zshenv}
+
+    export CPATH=${env}/include:${cpathEnv}
+    export LIBRARY_PATH=${env}/lib:${libraryPathEnv}
+    export PATH=$HOME/.gem/ruby/${ruby.version}/bin:${env}/bin:${pathEnv}
+  '';
   zdotdir-zshrc = pkgs.writeText ".zshrc" dotfiles-zshrc;
   zdotdir = pkgs.buildEnv {
     name = "teoljungberg-zdotdir";

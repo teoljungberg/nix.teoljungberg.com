@@ -4,7 +4,8 @@ let
   stdenv = pkgs.stdenv;
 
   dotfiles = fetchTarball "https://github.com/teoljungberg/dotfiles/archive/master.tar.gz";
-  teoljungberg = import ./nix/teoljungberg { inherit pkgs dotfiles; };
+  env = import ./nix/env.nix { inherit pkgs dotfiles; };
+  teoljungberg = import ./nix/teoljungberg { inherit pkgs dotfiles env; };
 
   zsh = teoljungberg.zsh;
 in

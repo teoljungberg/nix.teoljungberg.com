@@ -1,7 +1,6 @@
-{ pkgs, dotfiles }:
+{ pkgs, dotfiles, env }:
 
 let
-  dotfiles-bin = dotfiles + "/bin";
   dotfiles-gitConfig = builtins.readFile (dotfiles + "/gitconfig");
   dotfiles-tmuxConfig = builtins.readFile (dotfiles + "/tmux.conf");
   dotfiles-vimrc = builtins.readFile (dotfiles + "/vimrc");
@@ -10,12 +9,11 @@ let
   dotfiles-homeManager = builtins.readFile (dotfiles + "/config/nixpkgs/home.nix");
 in
 {
-  bin = pkgs.callPackage ./bin.nix { inherit pkgs dotfiles-bin; };
-  git = pkgs.callPackage ./git.nix { inherit pkgs; };
-  tmux = pkgs.callPackage ./tmux.nix { inherit pkgs; };
+  git = pkgs.callPackage ./git.nix { inherit pkgs dotfiles-gitConfig; };
+  tmux = pkgs.callPackage ./tmux.nix { inherit pkgs dotfiles-tmuxConfig; };
   vim = pkgs.callPackage ./vim.nix { inherit pkgs dotfiles-vimrc; };
   zsh = pkgs.callPackage ./zsh.nix {
-    inherit pkgs dotfiles-zshrc dotfiles-zshenv;
+    inherit pkgs dotfiles-zshrc dotfiles-zshenv env;
     ruby = pkgs.ruby_3_0;
   };
 }
