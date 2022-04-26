@@ -1,4 +1,6 @@
-{ pkgs, dotfiles }:
+{ pkgs ? import <nixpkgs> { }
+, dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+}:
 
 let
   env = import ../env.nix { inherit pkgs dotfiles; };
