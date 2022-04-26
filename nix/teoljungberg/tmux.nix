@@ -1,6 +1,9 @@
-{ pkgs, dotfiles-tmuxConfig }:
+{ pkgs ? import <nixpkgs> { }
+, dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+}:
 
 let
+  dotfiles-tmuxConfig = builtins.readFile (dotfiles + "/tmux.conf");
   tmuxConfig = pkgs.writeText "tmux.conf" dotfiles-tmuxConfig;
 in
 pkgs.symlinkJoin {

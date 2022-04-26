@@ -1,6 +1,12 @@
-{ pkgs, ruby, dotfiles-zshenv, dotfiles-zshrc, env }:
+{ pkgs ? import <nixpkgs> { }
+, dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+, env ? import ../env.nix { inherit pkgs dotfiles; }
+}:
 
 let
+  dotfiles-zshenv = dotfiles + "/zshenv";
+  dotfiles-zshrc = dotfiles + "/zshrc";
+  ruby = pkgs.ruby_3_0;
   cpathEnv = builtins.getEnv "CPATH";
   libraryPathEnv = builtins.getEnv "LIBRARY_PATH";
   pathEnv = builtins.getEnv "PATH";

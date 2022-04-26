@@ -1,6 +1,9 @@
-{ pkgs, dotfiles-gitConfig }:
+{ pkgs ? import <nixpkgs> { }
+, dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+}:
 
 let
+  dotfiles-gitConfig = dotfiles + "/gitconfig";
   gitConfig = pkgs.writeTextDir "gitconfig" dotfiles-gitConfig;
 in
 pkgs.symlinkJoin {
