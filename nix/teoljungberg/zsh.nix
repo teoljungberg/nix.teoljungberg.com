@@ -1,4 +1,4 @@
-{ pkgs ? (import <nixpkgs> { })
+{ pkgs ? import <nixpkgs> { }
 , ruby ? pkgs.ruby_3_0
 , dotfiles-zshenv ? ""
 , dotfiles-zshrc ? ""
