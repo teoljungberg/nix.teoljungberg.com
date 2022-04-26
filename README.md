@@ -7,5 +7,5 @@
 ## Local
 
 ```
-% nix-build
+% nix-build test
 ```
