@@ -1,7 +1,7 @@
 { pkgs, dotfiles-gitConfig }:
 
 let
-  gitConfig = pkgs.writeTextDir "gitconfig" gitConfig;
+  gitConfig = pkgs.writeTextDir "gitconfig" dotfiles-gitConfig;
 in
 pkgs.symlinkJoin {
   name = "git";
