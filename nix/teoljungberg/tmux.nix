@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> { }
-, dotfiles-tmuxConfig ? ""
-}:
+{ pkgs, dotfiles-tmuxConfig }:
 
 let
   tmuxConfig = pkgs.writeText "tmux.conf" tmuxConfig;

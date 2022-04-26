@@ -1,7 +1,4 @@
-{ pkgs ? import <nixpkgs> { }
-, ruby ? pkgs.ruby_3_0
-, dotfiles ? ""
-}:
+{ pkgs, dotfiles }:
 
 let
   dotfiles-bin = dotfiles + "/bin";
@@ -18,6 +15,7 @@ in
   tmux = pkgs.callPackage ./tmux.nix { inherit pkgs; };
   vim = pkgs.callPackage ./vim.nix { inherit pkgs dotfiles-vimrc; };
   zsh = pkgs.callPackage ./zsh.nix {
-    inherit pkgs ruby dotfiles-zshrc dotfiles-zshenv;
+    inherit pkgs dotfiles-zshrc dotfiles-zshenv;
+    ruby = pkgs.ruby_3_0;
   };
 }

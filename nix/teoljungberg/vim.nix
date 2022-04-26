@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> { }
-, dotfiles-vimrc ? ""
-}:
+{ pkgs, dotfiles-vimrc }:
 
 pkgs.vim_configurable.customize {
   name = "vim";

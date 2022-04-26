@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> { }
-, dotfiles-gitConfig ? ""
-}:
+{ pkgs, dotfiles-gitConfig }:
 
 let
   gitConfig = pkgs.writeTextDir "gitconfig" gitConfig;
