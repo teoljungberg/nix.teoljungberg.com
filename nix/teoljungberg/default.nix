@@ -1,6 +1,7 @@
-{ pkgs, dotfiles, env }:
+{ pkgs, dotfiles }:
 
 let
+  env = import ../env.nix { inherit pkgs dotfiles; };
   dotfiles-gitConfig = builtins.readFile (dotfiles + "/gitconfig");
   dotfiles-tmuxConfig = builtins.readFile (dotfiles + "/tmux.conf");
   dotfiles-vimrc = builtins.readFile (dotfiles + "/vimrc");
