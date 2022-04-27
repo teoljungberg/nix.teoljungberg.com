@@ -3,9 +3,8 @@
 }:
 
 let
-  stdenv = pkgs.stdenv;
   home =
-    if stdenv.isDarwin then
+    if pkgs.stdenv.isDarwin then
       "/Users/teo"
     else
       "/home/teo";
