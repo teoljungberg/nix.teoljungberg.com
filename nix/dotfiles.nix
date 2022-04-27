@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }
+, localCheckout ? false
+}:
 
 let
   stdenv = pkgs.stdenv;
@@ -8,4 +10,7 @@ let
     else
       "/home/teo";
 in
-"${home}/src/github.com/teoljungberg/dotfiles"
+if localCheckout then
+  "${home}/src/github.com/teoljungberg/dotfiles"
+else
+  fetchTarball "https://github.com/teoljungberg/dotfiles/archive/master.tar.gz"
