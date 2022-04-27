@@ -4,8 +4,8 @@
 }:
 
 let
-  dotfiles-zshenv = builtins.readFile (dotfiles + "/zshenv");
-  dotfiles-zshrc = builtins.readFile (dotfiles + "/zshrc");
+  dotfiles-zshenv = dotfiles.readFile "zshenv";
+  dotfiles-zshrc = dotfiles.readFile "zshrc";
   ruby = pkgs.ruby_3_0;
   cpathEnv = builtins.getEnv "CPATH";
   libraryPathEnv = builtins.getEnv "LIBRARY_PATH";

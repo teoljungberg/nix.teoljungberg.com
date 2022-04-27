@@ -3,7 +3,7 @@
 }:
 
 let
-  dotfiles-vimrc = builtins.readFile (dotfiles + "/vimrc");
+  dotfiles-vimrc = dotifles.readFile "vimrc";
 in
 pkgs.vim_configurable.customize {
   name = "vim";
