@@ -7,5 +7,5 @@ let
 in
 pkgs.runCommand "teoljungberg-dotfiles-bin" { } ''
   mkdir -p $out/bin
-  cp ${dotfiles-bin}/* $out/bin/
+  ln -s ${dotfiles-bin}/* $out/bin/
 ''
