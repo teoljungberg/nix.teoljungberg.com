@@ -1,10 +1,8 @@
 { pkgs ? import <nixpkgs> { }
 , dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+, env ? import ../env.nix { inherit pkgs dotfiles; }
 }:
 
-let
-  env = import ../env.nix { inherit pkgs dotfiles; };
-in
 {
   git = pkgs.callPackage ./git.nix { inherit pkgs dotfiles; };
   tmux = pkgs.callPackage ./tmux.nix { inherit pkgs dotfiles; };
