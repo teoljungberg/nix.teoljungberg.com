@@ -16,6 +16,8 @@ let
     export CPATH=${env}/include:${cpathEnv}
     export LIBRARY_PATH=${env}/lib:${libraryPathEnv}
     export PATH=$HOME/.gem/ruby/${ruby.version}/bin:${env}/bin:${pathEnv}
+
+    export IN_NIX_SHELL=1
   '';
   zdotdir-zshrc = pkgs.writeText ".zshrc" dotfiles-zshrc;
   zdotdir = pkgs.buildEnv {
