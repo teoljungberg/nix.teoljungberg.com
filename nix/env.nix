@@ -4,7 +4,9 @@
 
 let
   teoljungberg = import ./teoljungberg { inherit pkgs dotfiles; };
-  dotfiles-homeManager = import (dotfiles.getFile "config/nixpkgs/home.nix") { inherit pkgs; };
+  dotfiles-homeManager = import (dotfiles.getFile "config/nixpkgs/home.nix") {
+    inherit pkgs;
+  };
   homeManagerPackages = dotfiles-homeManager.home.packages;
   excludedPackages = with pkgs; [
     pkgs.git
