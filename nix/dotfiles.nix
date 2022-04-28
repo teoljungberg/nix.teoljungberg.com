@@ -1,7 +1,12 @@
 { localCheckout ? false }:
 
 let
-  isDarwin = builtins.isList (builtins.match ".*-darwin" builtins.currentSystem);
+  isDarwin = builtins.isList (
+    builtins.match (
+      ".*-darwin"
+        builtins.currentSystem
+    )
+  );
   home =
     if isDarwin then
       "/Users/teo"
