@@ -12,8 +12,8 @@ let
     pkgs.vim
   ];
   packagesWithoutCollisions = pkgs.lib.subtractLists
-    homeManagerPackages
-    excludedPackages;
+    excludedPackages
+    homeManagerPackages;
   paths = packagesWithoutCollisions ++ [
     teoljungberg.bin
     teoljungberg.git
