@@ -2,10 +2,7 @@
 
 let
   isDarwin = builtins.isList (
-    builtins.match (
-      ".*-darwin"
-        builtins.currentSystem
-    )
+    builtins.match ".*-darwin" builtins.currentSystem
   );
   home =
     if isDarwin then
