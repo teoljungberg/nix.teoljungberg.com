@@ -34,7 +34,7 @@ let
   };
 in
 pkgs.symlinkJoin {
-  name = "nix-teoljungberg";
+  name = "teoljungberg-nix";
   paths = [ pkgs.zsh ];
   passthru = { shellPath = pkgs.zsh.shellPath; };
   buildInputs = [ pkgs.makeWrapper ];
