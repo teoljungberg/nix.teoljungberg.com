@@ -1,10 +1,8 @@
 { localCheckout ? false }:
 
 let
-  pkgs = (
-    import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/21.11.tar.gz") { }
-  );
-  dotfiles = import ./nix/dotfiles.nix { inherit pkgs localCheckout; };
+  dotfiles = import ./nix/dotfiles.nix { inherit localCheckout; };
+  pkgs = import ./nix/pkgs.nix { inherit dotfiles; };
   env = import ./nix/env.nix { inherit pkgs dotfiles; };
   teoljungberg = import ./nix/teoljungberg { inherit pkgs dotfiles env; };
 
