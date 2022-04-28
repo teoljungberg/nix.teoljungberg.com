@@ -35,32 +35,32 @@ pkgs.vim_configurable.customize {
       vim-vinegar
       (pkgs.vimUtils.buildVimPluginFrom2Nix {
         pname = "vim-bundler";
-        version = "2.1";
+        version = "2022-04-28";
         src = pkgs.fetchFromGitHub {
           owner = "tpope";
           repo = "vim-bundler";
-          rev = "v2.1";
-          sha256 = "1050qnqdkgp1j1jj1a8g5b8klyb7s4gi08hhz529zm8fsdmzj1ca";
+          rev = "d66708fe0fd2d139ec6a2870dd94d813509f784d";
+          sha256 = "He8GMiNc9eVAl8mvhbYuwOOmLbGMjtULAE4YnVrwfr4=";
         };
       })
       (pkgs.vimUtils.buildVimPluginFrom2Nix {
         pname = "vim-rake";
-        version = "2021-06-07";
+        version = "2022-04-28";
         src = pkgs.fetchFromGitHub {
           owner = "tpope";
           repo = "vim-rake";
-          rev = "34ece18ac8f2d3641473c3f834275c2c1e072977";
-          sha256 = "1ff0na01mqm2dbgncrycr965sbifh6gd2wj1vv42vfgncz8l331a";
+          rev = "6b6ac578c27f0625f23164a8f9dc104578d32859";
+          sha256 = "0vEGog0syxqT+ucVAlcSVzGJVNeAmg7JYxJ4i3pf07c=";
         };
       })
       (pkgs.vimUtils.buildVimPluginFrom2Nix {
         pname = "vim-whitescale";
-        version = "2021-06-07";
+        version = "2022-04-28";
         src = pkgs.fetchFromGitHub {
           owner = "teoljungberg";
           repo = "vim-whitescale";
-          rev = "44b2e4531d8f2f4d11e4c5fe2216187c0a993e13";
-          sha256 = "0hlxww8njmw61ipxwvymqcc7h58h38k6444v3nf11gwdqkj0pnxg";
+          rev = "65d3ce1e20e3f2111a5f1b76752231e9bc824631";
+          sha256 = "eftxpI46bcc9uRCWRdk1m9YkDlSm7sp8oW7yBGtTl7I=";
         };
       })
     ];
