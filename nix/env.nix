@@ -1,9 +1,9 @@
 { pkgs ? import <nixpkgs> { }
-, dotfiles ? import ./dotfiles.nix { inherit pkgs; }
+, dotfiles ? import ./dotfiles.nix { }
 }:
 
 let
-  teoljungberg-bin = import ./teoljungberg/bin.nix { inherit pkgs dotfiles; };
+  teoljungberg = import ./teoljungberg { inherit pkgs dotfiles; };
   dotfiles-homeManager = import (dotfiles.getFile "config/nixpkgs/home.nix") { inherit pkgs; };
   homeManagerPackages = dotfiles-homeManager.home.packages;
   paths = homeManagerPackages ++ [ teoljungberg-bin ];

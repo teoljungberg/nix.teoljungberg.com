@@ -1,10 +1,9 @@
-{ pkgs ? import <nixpkgs> { }
-, localCheckout ? false
-}:
+{ localCheckout ? false }:
 
 let
+  isDarwin = builtins.isList (builtins.match ".*-darwin" builtins.currentSystem);
   home =
-    if pkgs.stdenv.isDarwin then
+    if isDarwin then
       "/Users/teo"
     else
       "/home/teo";

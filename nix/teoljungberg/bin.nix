@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> { }
-, dotfiles ? import ../dotfiles.nix { inherit pkgs; }
+, dotfiles ? import ../dotfiles.nix { }
 }:
 
 let
