@@ -17,10 +17,11 @@ let
     excludedPackages
     homeManagerPackages;
   paths = packagesWithoutCollisions ++ [
-    teoljungberg.bin
     teoljungberg.git
     teoljungberg.tmux
     teoljungberg.vim
+  ] ++ [
+    teoljungberg.bin
   ];
 in
 pkgs.buildEnv {
