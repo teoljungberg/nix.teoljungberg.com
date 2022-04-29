@@ -14,10 +14,10 @@ let
       "${home}/src/github.com/teoljungberg/dotfiles"
     else
       fetchTarball "https://github.com/teoljungberg/dotfiles/archive/master.tar.gz";
-  readFile = path: builtins.readFile (getFile (path));
-  getFile = path: location + "/" + path;
+  readFile = path: builtins.readFile (get (path));
+  get = path: location + "/" + path;
 in
 {
   readFile = readFile;
-  getFile = getFile;
+  get = get;
 }

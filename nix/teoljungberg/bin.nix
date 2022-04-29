@@ -3,7 +3,7 @@
 }:
 
 let
-  dotfiles-bin = dotfiles.getFile "bin";
+  dotfiles-bin = dotfiles.get "bin";
 in
 pkgs.runCommand "teoljungberg-dotfiles-bin" { } ''
   mkdir -p $out/bin
