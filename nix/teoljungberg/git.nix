@@ -3,7 +3,7 @@
 }:
 
 let
-  dotfiles-gitConfig = dotfiles.readFile "gitconfig";
+  dotfiles-gitConfig = dotfiles.read "gitconfig";
   gitConfig = pkgs.writeTextDir "gitconfig" dotfiles-gitConfig;
 in
 pkgs.symlinkJoin {
