@@ -4,10 +4,16 @@
 
 let
   teoljungberg = import ./teoljungberg { inherit pkgs dotfiles; };
-  dotfiles-homeManager = import (dotfiles.get "config/nixpkgs/home.nix") {
-    inherit pkgs;
-  };
-  homeManagerPackages = dotfiles-homeManager.home.packages;
+  getHomeManager = host: pkgs:
+    import (dotfiles.get "host-" + host + "/config/nixpkgs/home.nix") {
+      inherit pkgs;
+    };
+  dotfiles-shiso-homeManager = getHomeManager "shiso" pkgs;
+  dotfiles-vanilla-homeManager = getHomeManager "vanilla" pkgs;
+  homeManagerPackages = pkgs.lib.unique (
+    dotfiles-shiso-homeManager.home.packages ++
+    dotfiles-vanilla-homeManager.home.packages
+  );
   excludedPackages = with pkgs; [
     pkgs.git
     pkgs.tmux
