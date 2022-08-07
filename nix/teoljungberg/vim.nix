@@ -8,8 +8,8 @@ in
 pkgs.vim_configurable.customize {
   name = "vim";
   vimrcConfig.customRC = dotfilesVimrc;
-  vimrcConfig.packages.bundle = with pkgs.vimPlugins; {
-    start = [
+  vimrcConfig.packages.bundle = {
+    start = with pkgs.vimPlugins; [
       ale
       fzf-vim
       splitjoin-vim
