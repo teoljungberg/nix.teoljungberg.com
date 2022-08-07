@@ -3,8 +3,8 @@
 }:
 
 let
-  dotfiles-tmuxConfig = dotfiles.read "tmux.conf";
-  tmuxConfig = pkgs.writeText "tmux.conf" dotfiles-tmuxConfig;
+  dotfilesTmuxconfig = dotfiles.read "tmux.conf";
+  tmuxConfig = pkgs.writeText "tmux.conf" dotfilesTmuxconfig;
 in
 pkgs.symlinkJoin {
   name = "tmux";

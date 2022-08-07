@@ -4,14 +4,14 @@
 }:
 
 let
-  dotfiles-zshenv = dotfiles.read "zshenv";
-  dotfiles-zshrc = dotfiles.read "zshrc";
+  dotfilesZshenv = dotfiles.read "zshenv";
+  dotfilesZshrc = dotfiles.read "zshrc";
   ruby = pkgs.ruby_3_0;
   cpathEnv = builtins.getEnv "CPATH";
   libraryPathEnv = builtins.getEnv "LIBRARY_PATH";
   pathEnv = builtins.getEnv "PATH";
-  zdotdir-zshenv = pkgs.writeText ".zshenv" ''
-    ${dotfiles-zshenv}
+  zdotdirZshenv = pkgs.writeText ".zshenv" ''
+    ${dotfilesZshenv}
 
     export CPATH=${env}/include:${cpathEnv}
     export LIBRARY_PATH=${env}/lib:${libraryPathEnv}
@@ -19,15 +19,15 @@ let
 
     export IN_NIX_SHELL=1
   '';
-  zdotdir-zshrc = pkgs.writeText ".zshrc" dotfiles-zshrc;
+  zdotdirZshrc = pkgs.writeText ".zshrc" dotfilesZshrc;
   zdotdir = pkgs.buildEnv {
     name = "teoljungberg-zdotdir";
     paths = [
       (
         pkgs.runCommand "zdotdir" { } ''
           mkdir -p $out/zdotdir
-          cp ${zdotdir-zshenv} $out/zdotdir/.zshenv
-          cp ${zdotdir-zshrc} $out/zdotdir/.zshrc
+          cp ${zdotdirZshenv} $out/zdotdir/.zshenv
+          cp ${zdotdirZshrc} $out/zdotdir/.zshrc
         ''
       )
     ];

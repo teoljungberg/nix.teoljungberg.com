@@ -3,11 +3,11 @@
 }:
 
 let
-  dotfiles-vimrc = dotfiles.read "vimrc";
+  dotfilesVimrc = dotfiles.read "vimrc";
 in
 pkgs.vim_configurable.customize {
   name = "vim";
-  vimrcConfig.customRC = dotfiles-vimrc;
+  vimrcConfig.customRC = dotfilesVimrc;
   vimrcConfig.packages.bundle = with pkgs.vimPlugins; {
     start = [
       ale
