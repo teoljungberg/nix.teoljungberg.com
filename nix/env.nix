@@ -8,10 +8,8 @@ let
     import (dotfiles.get "host-" + host + "/config/nixpkgs/home.nix") {
       inherit pkgs;
     };
-  dotfilesShisoHomemanager = getHomeManager "shiso" pkgs;
   dotfilesVanillaHomemanager = getHomeManager "vanilla" pkgs;
   homeManagerPackages = pkgs.lib.unique (
-    dotfilesShisoHomemanager.home.packages ++
     dotfilesVanillaHomemanager.home.packages
   );
   excludedPackages = with pkgs; [
