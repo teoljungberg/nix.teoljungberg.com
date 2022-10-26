@@ -3,7 +3,7 @@
 let
   overlays = import (dotfiles.get "nixpkgs/overlays.nix");
   pkgs = (
-    import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/21.11.tar.gz") {
+    import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/22.05.tar.gz") {
       inherit overlays;
     }
   );
