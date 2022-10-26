@@ -18,6 +18,5 @@ let
   get = path: location + "/" + path;
 in
 {
-  read = read;
-  get = get;
+  inherit read get;
 }

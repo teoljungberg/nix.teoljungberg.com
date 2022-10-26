@@ -8,14 +8,13 @@ let
     import (dotfiles.get "host-" + host + "/config/nixpkgs/home.nix") {
       inherit pkgs;
     };
-  dotfilesVanillaHomemanager = getHomeManager "vanilla" pkgs;
-  homeManagerPackages = pkgs.lib.unique (
-    dotfilesVanillaHomemanager.home.packages
-  );
+  dotfilesVanillaHomeManager = getHomeManager "vanilla" pkgs;
+  homeManagerPackages = pkgs.lib.unique
+    dotfilesVanillaHomeManager.home.packages;
   excludedPackages = with pkgs; [
-    pkgs.git
-    pkgs.tmux
-    pkgs.vim
+    git
+    tmux
+    vim
   ];
   packagesWithoutCollisions = pkgs.lib.subtractLists
     excludedPackages
