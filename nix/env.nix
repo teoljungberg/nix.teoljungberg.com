@@ -1,6 +1,9 @@
 { pkgs ? import <nixpkgs> { }
+, lib ? pkgs.lib
 , dotfiles ? import ./dotfiles.nix { }
 }:
+
+with lib;
 
 let
   teoljungberg = import ./teoljungberg { inherit pkgs dotfiles; };
@@ -9,23 +12,29 @@ let
       inherit pkgs;
     };
   dotfilesVanillaHomeManager = getHomeManager "vanilla" pkgs;
-  homeManagerPackages = pkgs.lib.unique
+  homeManagerPackages = unique
     dotfilesVanillaHomeManager.home.packages;
   excludedPackages = with pkgs; [
     git
     tmux
-    vim
+    vim_configurable
   ];
-  packagesWithoutCollisions = pkgs.lib.subtractLists
-    excludedPackages
-    homeManagerPackages;
-  paths = packagesWithoutCollisions ++ [
+  overriddenPackages = [
     teoljungberg.git
     teoljungberg.tmux
     teoljungberg.vim
-  ] ++ [
-    teoljungberg.bin
   ];
+  packagesMatching = pkg1: pkg2:
+    (getName pkg1.name) == (getName pkg2.name);
+  collidingPackages = builtins.filter
+    (pkg: any (packagesMatching pkg) excludedPackages)
+    homeManagerPackages;
+  packagesWithoutCollisions = subtractLists
+    collidingPackages
+    homeManagerPackages;
+  paths = packagesWithoutCollisions
+    ++ overriddenPackages
+    ++ [ teoljungberg.bin ];
 in
 pkgs.buildEnv {
   name = "teoljungberg-env";
