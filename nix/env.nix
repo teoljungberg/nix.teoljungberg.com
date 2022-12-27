@@ -24,6 +24,9 @@ let
     teoljungberg.tmux
     teoljungberg.vim
   ];
+  newPackages = [
+    teoljungberg.bin
+  ];
   packagesMatching = pkg1: pkg2:
     (getName pkg1.name) == (getName pkg2.name);
   collidingPackages = builtins.filter
@@ -34,7 +37,7 @@ let
     homeManagerPackages;
   paths = packagesWithoutCollisions
     ++ overriddenPackages
-    ++ [ teoljungberg.bin ];
+    ++ newPackages;
 in
 pkgs.buildEnv {
   name = "teoljungberg-env";
