@@ -11,9 +11,9 @@ let
     import (dotfiles.get "host-" + host + "/config/nixpkgs/home.nix") {
       inherit pkgs;
     };
-  dotfilesVanillaHomeManager = getHomeManager "vanilla" pkgs;
+  dotfilesThymeHomeManager = getHomeManager "thyme" pkgs;
   homeManagerPackages = unique
-    dotfilesVanillaHomeManager.home.packages;
+    dotfilesThymeHomeManager.home.packages;
   excludedPackages = with pkgs; [
     git
     tmux
