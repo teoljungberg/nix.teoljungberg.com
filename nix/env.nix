@@ -25,7 +25,7 @@ let
     teoljungberg.vim
   ];
   newPackages = [
-    pkgs.postgresql_14
+    pkgs.postgresql_15
     pkgs.redis
     teoljungberg.bin
   ];
