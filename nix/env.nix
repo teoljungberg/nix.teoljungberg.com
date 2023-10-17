@@ -6,16 +6,18 @@
 with lib; let
   teoljungberg = import ./teoljungberg {inherit pkgs dotfiles;};
   getHomeManager = host: pkgs:
-    import (dotfiles.get "host-" + host + "/config/nixpkgs/home.nix") {
+    import (dotfiles.get "host-" + host + "/config/home-manager/home.nix") {
       inherit pkgs;
     };
-  dotfilesThymeHomeManager = getHomeManager "thyme" pkgs;
-  homeManagerPackages =
-    unique
-    dotfilesThymeHomeManager.home.packages;
+  homeManagerMint = getHomeManager "mint" pkgs;
+  homeManagerOregano = getHomeManager "oregano" pkgs;
+  homeManagerPackages = unique (
+    homeManagerMint.home.packages ++ homeManagerOregano.home.packages
+  );
   excludedPackages = with pkgs; [
     git
     tmux
+    vim
     vim_configurable
   ];
   overriddenPackages = [
