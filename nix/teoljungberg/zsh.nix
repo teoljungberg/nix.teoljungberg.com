@@ -1,9 +1,8 @@
-{ pkgs ? import <nixpkgs> { }
-, dotfiles ? import ../dotfiles.nix { }
-, env ? import ../env.nix { inherit pkgs dotfiles; }
-}:
-
-let
+{
+  pkgs ? import <nixpkgs> {},
+  dotfiles ? import ../dotfiles.nix {},
+  env ? import ../env.nix {inherit pkgs dotfiles;},
+}: let
   dotfilesZshenv = dotfiles.read "zshenv";
   dotfilesZshrc = dotfiles.read "zshrc";
   ruby = pkgs.ruby_3_0;
@@ -24,7 +23,7 @@ let
     name = "teoljungberg-zdotdir";
     paths = [
       (
-        pkgs.runCommand "zdotdir" { } ''
+        pkgs.runCommand "zdotdir" {} ''
           mkdir -p $out/zdotdir
           cp ${zdotdirZshenv} $out/zdotdir/.zshenv
           cp ${zdotdirZshrc} $out/zdotdir/.zshrc
@@ -33,14 +32,14 @@ let
     ];
   };
 in
-pkgs.symlinkJoin {
-  name = "teoljungberg-nix";
-  paths = [ pkgs.zsh ];
-  passthru = { shellPath = pkgs.zsh.shellPath; };
-  buildInputs = [ pkgs.makeWrapper ];
-  postBuild = ''
-    bin="$(readlink -v --canonicalize-existing "$out/bin/zsh")"
-    rm "$out/bin/zsh"
-    makeWrapper $bin "$out/bin/zsh" --set "ZDOTDIR" "${zdotdir}/zdotdir"
-  '';
-}
+  pkgs.symlinkJoin {
+    name = "teoljungberg-nix";
+    paths = [pkgs.zsh];
+    passthru = {shellPath = pkgs.zsh.shellPath;};
+    buildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      bin="$(readlink -v --canonicalize-existing "$out/bin/zsh")"
+      rm "$out/bin/zsh"
+      makeWrapper $bin "$out/bin/zsh" --set "ZDOTDIR" "${zdotdir}/zdotdir"
+    '';
+  }

@@ -1,1 +1,1 @@
-import ../default.nix { localCheckout = true; }
+import ../default.nix {localCheckout = true;}
